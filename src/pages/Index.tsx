@@ -167,7 +167,7 @@ const Index = () => {
 
               {/* فاطمة وزاهر */}
 <span
-  className="text-5xl sm:text-6xl mt-10 block"
+  className="text-5xl sm:text-6xl mt-20 block"
   style={{
     fontFamily: "'IranNastaliq', sans-serif",
     color: "#5F4F41",
@@ -186,7 +186,7 @@ const Index = () => {
   <span style={{ fontFamily: "font-arabic" }}>&</span>
 
   <span className="inline-flex flex-col items-center">
-    فيصل
+فيصـل
     <span
       className="font-arabic text-base sm:text-lg mt-[-2px]"
       style={{ color: "#5F4F41" }}
@@ -346,7 +346,7 @@ const Index = () => {
                       color: "#5F4F41",
                     }}
                   >
-                    نـسداء{" "}
+                    نسـداء{" "}
                     <span style={{ fontFamily: "font-arabic" }}>&</span>{" "}
                     فيصـل
                   </span>
