@@ -144,28 +144,7 @@ const Index = () => {
                 ندعوكم بكل حُب لحضور حفل زفاف
               </p>
 
-              {/* أم عادل وبناتها */}
-              {/*  <div
-                className="flex items-center justify-center gap-1 text-lg sm:text-xl font-bold py-2"
-                style={{ color: "#5F4F41" }}
-              >
-                <span style={{ fontFamily: "'Almarai', sans-serif" }}>
-                  أم عـادل وبنـاتهـا
-                </span>
-              </div>*/}
-
-              {/* طيف */}
-              {/*  <div className="pt-2 pb-2 flex flex-col items-center justify-center gap-1">*/}
-
-              {/* السطر فوق الاسم */}
-              {/*  <p
-                  className="font-arabic text-base sm:text-lg opacity-90"
-                  style={{ color: "#5F4F41" }}
-                >
-                  بدعوتكم لحضور حفل زفاف ابنتها
-                </p> */}
-
-              {/* فاطمة وزاهر */}
+              {/* الأسماء */}
               <div className="pt-20">
                 <span
                   className="text-5xl sm:text-6xl block"
@@ -205,6 +184,7 @@ const Index = () => {
                   </span>
                 </span>
               </div>
+            </div>
 
             {/* قسم الموقع */}
             <div id="location" className="text-center space-y-0.5 py-1">
