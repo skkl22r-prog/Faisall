@@ -180,7 +180,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
     ctx.shadowBlur = 10;
 
     ctx.fillText(
-      " فاطمـة   &   زاهــر",
+      " نسـداء   &   فيصـل",
       canvas.width / 2,
       canvas.height - 150
     );
@@ -220,7 +220,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
       ) {
         await navigator.share({
           files: [file],
-          title: "فاطمـة & زاهــر",
+          title: "نسـداء & فيصـل",
         });
       } else {
         alert(
@@ -246,7 +246,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
   // الاتصال
   // =========================================================
   const handlePhoneClick = () => {
-    window.location.href = "tel:0590997231";
+    window.location.href = "tel:0533133784";
   };
 
   // =========================================================
@@ -460,7 +460,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
                       }}
                       className="text-3xl font-bold"
                     >
-                      فاطمـة   &   زاهــر
+                      نسـداء   &   فيصـل
                     </p>
                   </div>
                 </div>
@@ -611,7 +611,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
                     "'Almarai', sans-serif",
                 }}
               >
-                0590997231
+                0533133784
               </p>
 
               {/* زر الاتصال البني */}
