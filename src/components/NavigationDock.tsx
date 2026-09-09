@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import {
   Phone,
-  Music,
   Camera,
   MapPin,
   Heart,
@@ -12,9 +11,6 @@ import {
   Check,
   Send,
 } from "lucide-react";
-
-// 🎵 استيراد ملف الصوت
-import bgMusic from "@/assets/zf.m4a";
 
 interface NavigationDockProps {
   active: boolean;
@@ -28,7 +24,6 @@ type RSVPState =
   | { kind: "success"; name: string };
 
 const NavigationDock = ({ active }: NavigationDockProps) => {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [showCamera, setShowCamera] = useState(false);
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
 
@@ -46,41 +41,9 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
     kind: "form",
   });
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [stream, setStream] = useState<MediaStream | null>(null);
-
-  // =========================================================
-  // تشغيل الموسيقى تلقائياً فور فتح الظرف
-  // =========================================================
-  useEffect(() => {
-    if (active && audioRef.current) {
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => {
-          setIsPlaying(false);
-        });
-    }
-  }, [active]);
-
-  // =========================================================
-  // تشغيل / إيقاف الموسيقى
-  // =========================================================
-  const toggleMusic = () => {
-    if (!audioRef.current) return;
-
-    if (isPlaying) {
-      audioRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch(() => setIsPlaying(false));
-    }
-  };
 
   // =========================================================
   // فتح الكاميرا
@@ -421,16 +384,6 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
 
   return (
     <>
-      {/* =====================================================
-          الصوت
-      ====================================================== */}
-      <audio
-        ref={audioRef}
-        loop
-        src={bgMusic}
-        preload="auto"
-      />
-
       <canvas
         ref={canvasRef}
         className="hidden"
@@ -1074,17 +1027,13 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
             </span>
           </button>
 
-          {/* 2. موسيقى */}
+          {/* 2. الكاميرا */}
           <button
-            onClick={toggleMusic}
+            onClick={openCamera}
             className="flex flex-col items-center justify-center gap-1 cursor-pointer transition-transform active:scale-95"
           >
-            <Music
-              className={`w-5 h-5 transition-opacity ${
-                isPlaying
-                  ? "opacity-100 animate-pulse"
-                  : "opacity-50"
-              }`}
+            <Camera
+              className="w-5 h-5"
               style={{
                 color: "#5F4F41",
               }}
@@ -1096,14 +1045,13 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
                 color: "#5F4F41",
               }}
             >
-              موسيقى
+              كاميرا
             </span>
           </button>
 
-          {/* 3. الكاميرا */}
-          <button
-            onClick={openCamera}
-            className="relative -top-2 flex flex-col items-center justify-center cursor-pointer transition-transform active:scale-95"
+          {/* 3. القلب */}
+          <div
+            className="relative -top-2 flex flex-col items-center justify-center"
           >
             <div
               className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg border border-white/40"
@@ -1112,9 +1060,9 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
                   "#5F4F41",
               }}
             >
-              <Camera className="w-6 h-6 text-white" />
+              <Heart className="w-6 h-6 text-white" />
             </div>
-          </button>
+          </div>
 
           {/* 4. الموقع */}
           <button
