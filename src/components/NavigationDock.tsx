@@ -338,16 +338,16 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
 
       form.method = "POST";
 
-    // ===== رابط فورم طيف الجديد =====
+// ===== رابط الفورم الجديد =====
 form.action =
-  "https://docs.google.com/forms/d/e/1FAIpQLScP3hxvwt5Ja0uNdGGR0dqdCgAP0sQ0F_WduymeP4Ktco7YSw/formResponse";
+  "https://docs.google.com/forms/d/e/1FAIpQLSdKCQo0XdVID2TpVB1Bj-4_4eLrBny3WMFxJHfoDvYcYSpkCg/formResponse";
 
 // ===== خانة الاسم =====
 const nameInput =
   document.createElement("input");
 
 nameInput.type = "hidden";
-nameInput.name = "entry.905017275";
+nameInput.name = "entry.429422052";
 nameInput.value = finalName;
 
 // ===== خانة الحالة =====
@@ -355,20 +355,12 @@ const statusInput =
   document.createElement("input");
 
 statusInput.type = "hidden";
-statusInput.name = "entry.61338319";
-      nameInput.value = finalName;
+statusInput.name = "entry.277574281";
 
-      // ===== خانة الحالة =====
-      const statusInput =
-        document.createElement("input");
-
-      statusInput.type = "hidden";
-      statusInput.name = "entry.61338319";
-
-      statusInput.value =
-        rsvpStatus === "attending"
-          ? "تاكيد الحضور"
-          : "الاعتذار عن الحضور";
+statusInput.value =
+  rsvpStatus === "attending"
+    ? "تاكيد الحضور"
+    : "الاعتذار عن الحضور";
 
       form.appendChild(nameInput);
       form.appendChild(statusInput);
