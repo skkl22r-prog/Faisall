@@ -1116,7 +1116,7 @@ statusInput.value =
           <button
             onClick={() => {
               window.location.href =
-                "https://www.google.com/maps/search/?api=1&query=قاعة+اوبال+فندق+برادايس+نيس+جدة";
+                "https://www.google.com/maps/search/?api=1&query=قصر+ركن+ليالينا+الرياض";
             }}
             className="flex flex-col items-center justify-center gap-1 cursor-pointer transition-transform active:scale-95"
           >
