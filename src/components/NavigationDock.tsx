@@ -338,20 +338,24 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
 
       form.method = "POST";
 
-      // ===== رابط فورم طيف الجديد =====
-      form.action =
-        "https://docs.google.com/forms/d/e/1FAIpQLScP3hxvwt5Ja0uNdGGR0dqdCgAP0sQ0F_WduymeP4Ktco7YSw/formResponse";
+    // ===== رابط فورم طيف الجديد =====
+form.action =
+  "https://docs.google.com/forms/d/e/1FAIpQLScP3hxvwt5Ja0uNdGGR0dqdCgAP0sQ0F_WduymeP4Ktco7YSw/formResponse";
 
-      form.target = "hidden_google_form";
+// ===== خانة الاسم =====
+const nameInput =
+  document.createElement("input");
 
-      form.style.display = "none";
+nameInput.type = "hidden";
+nameInput.name = "entry.905017275";
+nameInput.value = finalName;
 
-      // ===== خانة الاسم =====
-      const nameInput =
-        document.createElement("input");
+// ===== خانة الحالة =====
+const statusInput =
+  document.createElement("input");
 
-      nameInput.type = "hidden";
-      nameInput.name = "entry.905017275";
+statusInput.type = "hidden";
+statusInput.name = "entry.61338319";
       nameInput.value = finalName;
 
       // ===== خانة الحالة =====
