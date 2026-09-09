@@ -179,7 +179,7 @@ const Index = () => {
                       className="font-arabic text-base sm:text-lg mt-[-2px]"
                       style={{ color: "#5F4F41" }}
                     >
-                      الشبيلي
+                      الشيخ
                     </span>
                   </span>
                 </span>
@@ -250,7 +250,7 @@ const Index = () => {
                     className="font-arabic text-xs font-semibold opacity-80"
                     style={{ color: "#5F4F41" }}
                   >
-                     
+                     11.11.2026  |  01.06.1448
                   </div>
                 </div>
               </div>
