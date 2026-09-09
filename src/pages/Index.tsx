@@ -166,53 +166,45 @@ const Index = () => {
                 </p> */}
 
               {/* فاطمة وزاهر */}
-             <div className="pt-20">
-
+<div className="pt-20">
   <span
-
     className="text-5xl sm:text-6xl block"
-
     style={{
-
       fontFamily: "'IranNastaliq', sans-serif",
-
       color: "#5F4F41",
-
     }}
-
   >
-                <span className="inline-flex flex-col items-center">
-                  نسـداء
-                  <span
-                    className="font-arabic text-base sm:text-lg mt-[-2px]"
-                    style={{ color: "#5F4F41" }}
-                  >
-                    الشبيلي
-                  </span>
-                </span>
+    <span className="inline-flex flex-col items-center">
+      نسـداء
+      <span
+        className="font-arabic text-base sm:text-lg mt-[-2px]"
+        style={{ color: "#5F4F41" }}
+      >
+        الشبيلي
+      </span>
+    </span>
 
-                <span
-                  style={{
-                    fontFamily: "font-arabic",
-                    fontSize: "0.4em",
-                    margin: "0 8px",
-                  }}
-                >
-                  &
-                </span>
+    <span
+      style={{
+        fontFamily: "font-arabic",
+        fontSize: "0.4em",
+        margin: "0 8px",
+      }}
+    >
+      &
+    </span>
 
-                <span className="inline-flex flex-col items-center">
-                  فيصـل
-                  <span
-                    className="font-arabic text-base sm:text-lg mt-[-2px]"
-                    style={{ color: "#5F4F41" }}
-                  >
-                    الشبيلي
-                  </span>
-                </span>
-              </span>
-
-            </div>
+    <span className="inline-flex flex-col items-center">
+      فيصـل
+      <span
+        className="font-arabic text-base sm:text-lg mt-[-2px]"
+        style={{ color: "#5F4F41" }}
+      >
+        الشبيلي
+      </span>
+    </span>
+  </span>
+</div>
 
             {/* قسم الموقع */}
             <div id="location" className="text-center space-y-0.5 py-1">
