@@ -304,7 +304,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
   };
 
   // =========================================================
-  // إرسال RSVP إلى Google Forms فقط
+  // إرسال RSVP إلى Google Forms بدون إظهار الفورم
   // =========================================================
   const submitRSVP = async () => {
     if (!guestName.trim() || !rsvpStatus) {
@@ -318,6 +318,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
     });
 
     try {
+      // إنشاء iframe مخفي تماماً لاستقبال نتيجة الإرسال
       let iframe = document.getElementById(
         "hidden_google_form"
       ) as HTMLIFrameElement | null;
@@ -329,50 +330,60 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
         iframe.id = "hidden_google_form";
 
         iframe.style.display = "none";
+        iframe.setAttribute("aria-hidden", "true");
 
         document.body.appendChild(iframe);
       }
 
-      const form =
-        document.createElement("form");
+      // إنشاء فورم مخفي للإرسال المباشر
+      const form = document.createElement("form");
 
       form.method = "POST";
 
-// ===== رابط الفورم الجديد =====
-form.action =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdKCQo0XdVID2TpVB1Bj-4_4eLrBny3WMFxJHfoDvYcYSpkCg/formResponse";
+      // رابط الإرسال المباشر وليس صفحة عرض الفورم
+      form.action =
+        "https://docs.google.com/forms/d/e/1FAIpQLSdKCQo0XdVID2TpVB1Bj-4_4eLrBny3WMFxJHfoDvYcYSpkCg/formResponse";
 
-// ===== خانة الاسم =====
-const nameInput =
-  document.createElement("input");
+      // إرسال الفورم إلى iframe المخفي
+      form.target = "hidden_google_form";
 
-nameInput.type = "hidden";
-nameInput.name = "entry.429422052";
-nameInput.value = finalName;
+      // إخفاء الفورم بالكامل
+      form.style.display = "none";
 
-// ===== خانة الحالة =====
-const statusInput =
-  document.createElement("input");
+      // ===== خانة الاسم =====
+      const nameInput =
+        document.createElement("input");
 
-statusInput.type = "hidden";
-statusInput.name = "entry.277574281";
+      nameInput.type = "hidden";
+      nameInput.name = "entry.429422052";
+      nameInput.value = finalName;
 
-statusInput.value =
-  rsvpStatus === "attending"
-    ? "تاكيد الحضور"
-    : "الاعتذار عن الحضور";
+      // ===== خانة الحالة =====
+      const statusInput =
+        document.createElement("input");
+
+      statusInput.type = "hidden";
+      statusInput.name = "entry.277574281";
+
+      statusInput.value =
+        rsvpStatus === "attending"
+          ? "تاكيد الحضور"
+          : "الاعتذار عن الحضور";
 
       form.appendChild(nameInput);
       form.appendChild(statusInput);
 
       document.body.appendChild(form);
 
+      // الإرسال يتم في الخلفية بدون فتح Google Form
       form.submit();
 
+      // حذف الفورم المؤقت بعد الإرسال
       setTimeout(() => {
         form.remove();
       }, 1000);
 
+      // حفظ حالة الضيف محلياً
       localStorage.setItem(
         "guest_rsvp",
         JSON.stringify({
@@ -381,6 +392,7 @@ statusInput.value =
         })
       );
 
+      // عرض النتيجة داخل الدعوة فقط
       if (rsvpStatus === "attending") {
         setRsvpState({
           kind: "success",
@@ -542,7 +554,6 @@ statusInput.value =
       {showContact && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-5">
 
-          {/* الخلفية */}
           <div
             className="absolute inset-0 bg-black/25 backdrop-blur-md"
             onClick={() =>
@@ -550,7 +561,6 @@ statusInput.value =
             }
           />
 
-          {/* المربع */}
           <div
             className="relative w-full max-w-[380px] rounded-[32px] px-7 py-8 shadow-2xl border border-white/30"
             style={{
@@ -560,7 +570,6 @@ statusInput.value =
             }}
           >
 
-            {/* زخرفة الركن العلوي */}
             <div className="absolute top-3 right-4 text-xl opacity-60">
               ❈
             </div>
@@ -569,7 +578,6 @@ statusInput.value =
               ❈
             </div>
 
-            {/* المحتوى */}
             <div className="text-center py-5">
 
               <Phone
@@ -596,7 +604,6 @@ statusInput.value =
                     "'Almarai', sans-serif",
                 }}
               >
- 
               </p>
 
               <p
@@ -610,7 +617,6 @@ statusInput.value =
                 0533133784
               </p>
 
-              {/* زر الاتصال البني */}
               <button
                 type="button"
                 onClick={handlePhoneClick}
@@ -626,7 +632,6 @@ statusInput.value =
                 اتصال
               </button>
 
-              {/* إلغاء */}
               <button
                 type="button"
                 onClick={() =>
@@ -644,7 +649,6 @@ statusInput.value =
 
             </div>
 
-            {/* زخارف سفلية */}
             <div className="absolute bottom-3 right-4 text-xl opacity-60">
               ❈
             </div>
