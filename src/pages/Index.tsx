@@ -166,13 +166,21 @@ const Index = () => {
                 </p> */}
 
               {/* فاطمة وزاهر */}
-              <span
-                className="text-5xl sm:text-6xl mt-12 block"
-                style={{
-                  fontFamily: "'IranNastaliq', sans-serif",
-                  color: "#5F4F41",
-                }}
-              >
+             <div className="pt-20">
+
+  <span
+
+    className="text-5xl sm:text-6xl block"
+
+    style={{
+
+      fontFamily: "'IranNastaliq', sans-serif",
+
+      color: "#5F4F41",
+
+    }}
+
+  >
                 <span className="inline-flex flex-col items-center">
                   نسـداء
                   <span
