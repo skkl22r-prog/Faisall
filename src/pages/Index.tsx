@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Heart, Calendar } from "lucide-react";
-import invitationImg from "@/assets/Bn.png";
+import invitationImg from "@/assets/Nn.png";
 import sosImg from "@/assets/Rn.jpeg";
 
 import footerBgImg from "@/assets/96AF05E8-7D83-48B7-B124-4763797873E0.png";
@@ -166,18 +166,18 @@ const Index = () => {
                 </p> */}
 
               {/* فاطمة وزاهر */}
-             <span
-  className="text-5xl sm:text-6xl mt-6 block"
+<span
+  className="text-5xl sm:text-6xl mt-10 block"
   style={{
     fontFamily: "'IranNastaliq', sans-serif",
     color: "#5F4F41",
   }}
 >
   <span className="inline-flex flex-col items-center">
-    نـداء
+    نسـداء
     <span
-      className="text-sm sm:text-base mt-[-2px]"
-      style={{ fontFamily: "font-arabic" }}
+      className="font-arabic text-base sm:text-lg mt-[-2px]"
+      style={{ color: "#5F4F41" }}
     >
       الشبيلي
     </span>
@@ -188,8 +188,8 @@ const Index = () => {
   <span className="inline-flex flex-col items-center">
     فيصل
     <span
-      className="text-sm sm:text-base mt-[-2px]"
-      style={{ fontFamily: "font-arabic" }}
+      className="font-arabic text-base sm:text-lg mt-[-2px]"
+      style={{ color: "#5F4F41" }}
     >
       الشبيلي
     </span>
@@ -346,7 +346,7 @@ const Index = () => {
                       color: "#5F4F41",
                     }}
                   >
-                    نـداء{" "}
+                    نـسداء{" "}
                     <span style={{ fontFamily: "font-arabic" }}>&</span>{" "}
                     فيصـل
                   </span>
