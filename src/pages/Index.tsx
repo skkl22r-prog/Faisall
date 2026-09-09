@@ -167,7 +167,7 @@ const Index = () => {
 
               {/* فاطمة وزاهر */}
 <span
-  className="text-5xl sm:text-6xl mt-20 block"
+  className="text-5xl sm:text-6xl mt-30 block"
   style={{
     fontFamily: "'IranNastaliq', sans-serif",
     color: "#5F4F41",
