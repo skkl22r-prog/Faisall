@@ -42,7 +42,20 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
     audio.volume = 0.5;
     audioRef.current = audio;
 
+    const handleEnvelopeOpened = async () => {
+      try {
+        await audio.play();
+        setIsMusicPlaying(true);
+      } catch (error) {
+        console.log("تعذر تشغيل الموسيقى:", error);
+        setIsMusicPlaying(false);
+      }
+    };
+
+    window.addEventListener("envelope-opened", handleEnvelopeOpened);
+
     return () => {
+      window.removeEventListener("envelope-opened", handleEnvelopeOpened);
       audio.pause();
       audioRef.current = null;
     };
@@ -244,8 +257,8 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
   // =========================================================
   // الاتصال
   // =========================================================
-  const handlePhoneClick = () => {
-    window.location.href = "tel:0533320422";
+  const handlePhoneClick = (phoneNumber: string) => {
+    window.location.href = `tel:${phoneNumber}`;
   };
 
   // =========================================================
@@ -585,8 +598,9 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
               >
               </p>
 
+              {/* الرقم الأول */}
               <p
-                className="text-lg font-bold mb-6"
+                className="text-lg font-bold mb-3"
                 dir="ltr"
                 style={{
                   fontFamily:
@@ -598,7 +612,34 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
 
               <button
                 type="button"
-                onClick={handlePhoneClick}
+                onClick={() => handlePhoneClick("0533320422")}
+                className="w-full py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all"
+                style={{
+                  fontFamily:
+                    "'Almarai', sans-serif",
+                  background: "#5F4F41",
+                  color: "#FFFFFF",
+                }}
+              >
+                <Phone className="w-4 h-4" />
+                اتصال
+              </button>
+
+              {/* الرقم الثاني */}
+              <p
+                className="text-lg font-bold mt-5 mb-3"
+                dir="ltr"
+                style={{
+                  fontFamily:
+                    "'Almarai', sans-serif",
+                }}
+              >
+                0542777654
+              </p>
+
+              <button
+                type="button"
+                onClick={() => handlePhoneClick("0542777654")}
                 className="w-full py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all"
                 style={{
                   fontFamily:
