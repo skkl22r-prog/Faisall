@@ -154,12 +154,12 @@ const Index = () => {
                   }}
                 >
                   <span className="inline-flex flex-col items-center">
-                    نسـداء
+                    فيصـل
                     <span
                       className="font-arabic text-base sm:text-lg mt-[-2px]"
                       style={{ color: "#5F4F41" }}
                     >
-                      الشبيلي
+                      الشيخ
                     </span>
                   </span>
 
@@ -174,12 +174,12 @@ const Index = () => {
                   </span>
 
                   <span className="inline-flex flex-col items-center">
-                    فيصـل
+                    نسـداء
                     <span
                       className="font-arabic text-base sm:text-lg mt-[-2px]"
                       style={{ color: "#5F4F41" }}
                     >
-                      الشيخ
+                      الشبيلي
                     </span>
                   </span>
                 </span>
@@ -334,9 +334,9 @@ const Index = () => {
                       color: "#5F4F41",
                     }}
                   >
-                    نسـداء{" "}
+                    فيصـل{" "}
                     <span style={{ fontFamily: "font-arabic" }}>&</span>{" "}
-                    فيصـل
+                    نسـداء
                   </span>
                 </div>
               </Reveal>
