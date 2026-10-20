@@ -47,7 +47,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
         await audio.play();
         setIsMusicPlaying(true);
       } catch (error) {
-        console.log("تعذر تشغيل الموسيقى:", error);
+        console.log("تعذر تشغيل الموسيقى تلقائياً:", error);
         setIsMusicPlaying(false);
       }
     };
@@ -1094,17 +1094,19 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
             </span>
           </button>
 
-          {/* 2. الموسيقى */}
+          {/* 2. الموسيقى (مع تأثير بصري بسيط عند التشغيل/الإيقاف) */}
           <button
             type="button"
             onClick={toggleMusic}
-            className="flex flex-col items-center justify-center gap-1 cursor-pointer transition-transform active:scale-95"
+            className={`flex flex-col items-center justify-center gap-1 cursor-pointer transition-transform active:scale-95 ${
+              isMusicPlaying ? "opacity-100 scale-105" : "opacity-75"
+            }`}
             aria-label={isMusicPlaying ? "إيقاف الموسيقى" : "تشغيل الموسيقى"}
           >
             <Music
               className="w-5 h-5"
               style={{
-                color: "#5F4F41",
+                color: isMusicPlaying ? "#8C7A6B" : "#5F4F41",
               }}
             />
 
@@ -1114,7 +1116,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
                 color: "#5F4F41",
               }}
             >
-              موسيقى
+              {isMusicPlaying ? "إيقاف" : "موسيقى"}
             </span>
           </button>
 
