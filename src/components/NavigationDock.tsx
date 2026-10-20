@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Phone,
   Camera,
@@ -10,7 +10,9 @@ import {
   Share2,
   Check,
   Send,
+  Music,
 } from "lucide-react";
+import faaMusic from "@/assets/faa.m4a";
 
 interface NavigationDockProps {
   active: boolean;
@@ -29,6 +31,40 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
 
   // ===== نافذة التواصل =====
   const [showContact, setShowContact] = useState(false);
+
+  // ===== الموسيقى =====
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+
+  useEffect(() => {
+    const audio = new Audio(faaMusic);
+    audio.loop = true;
+    audio.volume = 0.5;
+    audioRef.current = audio;
+
+    return () => {
+      audio.pause();
+      audioRef.current = null;
+    };
+  }, []);
+
+  const toggleMusic = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (audio.paused) {
+      try {
+        await audio.play();
+        setIsMusicPlaying(true);
+      } catch (error) {
+        console.log("تعذر تشغيل الموسيقى:", error);
+        setIsMusicPlaying(false);
+      }
+    } else {
+      audio.pause();
+      setIsMusicPlaying(false);
+    }
+  };
 
   // ===== RSVP =====
   const [showRSVP, setShowRSVP] = useState(false);
@@ -209,7 +245,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
   // الاتصال
   // =========================================================
   const handlePhoneClick = () => {
-    window.location.href = "tel:0533133784";
+    window.location.href = "tel:0533320422";
   };
 
   // =========================================================
@@ -281,7 +317,6 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
     });
 
     try {
-      // إنشاء iframe مخفي تماماً لاستقبال نتيجة الإرسال
       let iframe = document.getElementById(
         "hidden_google_form"
       ) as HTMLIFrameElement | null;
@@ -298,19 +333,14 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
         document.body.appendChild(iframe);
       }
 
-      // إنشاء فورم مخفي للإرسال المباشر
       const form = document.createElement("form");
 
       form.method = "POST";
 
-      // رابط الإرسال المباشر وليس صفحة عرض الفورم
       form.action =
-        "https://docs.google.com/forms/d/e/1FAIpQLSdKCQo0XdVID2TpVB1Bj-4_4eLrBny3WMFxJHfoDvYcYSpkCg/formResponse";
+        "https://docs.google.com/forms/d/e/1FAIpQLSd3M44lQ2qrmTaX1S6iMC46RxvaBXw2XkE87ywkAFDq8AyWzA/formResponse";
 
-      // إرسال الفورم إلى iframe المخفي
       form.target = "hidden_google_form";
-
-      // إخفاء الفورم بالكامل
       form.style.display = "none";
 
       // ===== خانة الاسم =====
@@ -318,7 +348,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
         document.createElement("input");
 
       nameInput.type = "hidden";
-      nameInput.name = "entry.429422052";
+      nameInput.name = "entry.1010120079";
       nameInput.value = finalName;
 
       // ===== خانة الحالة =====
@@ -326,7 +356,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
         document.createElement("input");
 
       statusInput.type = "hidden";
-      statusInput.name = "entry.277574281";
+      statusInput.name = "entry.1728763171";
 
       statusInput.value =
         rsvpStatus === "attending"
@@ -338,15 +368,12 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
 
       document.body.appendChild(form);
 
-      // الإرسال يتم في الخلفية بدون فتح Google Form
       form.submit();
 
-      // حذف الفورم المؤقت بعد الإرسال
       setTimeout(() => {
         form.remove();
       }, 1000);
 
-      // حفظ حالة الضيف محلياً
       localStorage.setItem(
         "guest_rsvp",
         JSON.stringify({
@@ -355,7 +382,6 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
         })
       );
 
-      // عرض النتيجة داخل الدعوة فقط
       if (rsvpStatus === "attending") {
         setRsvpState({
           kind: "success",
@@ -567,7 +593,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
                     "'Almarai', sans-serif",
                 }}
               >
-                0533133784
+                0533320422
               </p>
 
               <button
@@ -1027,12 +1053,14 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
             </span>
           </button>
 
-          {/* 2. الكاميرا */}
+          {/* 2. الموسيقى */}
           <button
-            onClick={openCamera}
+            type="button"
+            onClick={toggleMusic}
             className="flex flex-col items-center justify-center gap-1 cursor-pointer transition-transform active:scale-95"
+            aria-label={isMusicPlaying ? "إيقاف الموسيقى" : "تشغيل الموسيقى"}
           >
-            <Camera
+            <Music
               className="w-5 h-5"
               style={{
                 color: "#5F4F41",
@@ -1045,24 +1073,22 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
                 color: "#5F4F41",
               }}
             >
-              كاميرا
+              موسيقى
             </span>
           </button>
 
-          {/* 3. القلب */}
-          <div
-            className="relative -top-2 flex flex-col items-center justify-center"
+          {/* 3. الكاميرا مكان القلب */}
+          <button
+            type="button"
+            onClick={openCamera}
+            aria-label="فتح الكاميرا"
+            className="relative -top-2 w-12 h-12 rounded-full flex items-center justify-center shadow-lg border border-white/40 cursor-pointer transition-transform active:scale-95"
+            style={{
+              background: "#5F4F41",
+            }}
           >
-            <div
-              className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg border border-white/40"
-              style={{
-                background:
-                  "#5F4F41",
-              }}
-            >
-              <Heart className="w-6 h-6 text-white" />
-            </div>
-          </div>
+            <Camera className="w-6 h-6 text-white" />
+          </button>
 
           {/* 4. الموقع */}
           <button
