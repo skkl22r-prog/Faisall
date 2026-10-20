@@ -1116,7 +1116,7 @@ const NavigationDock = ({ active }: NavigationDockProps) => {
                 color: "#5F4F41",
               }}
             >
-              {isMusicPlaying ? "إيقاف" : "موسيقى"}
+              {isMusicPlaying ? "موسيقى" : "موسيقى"}
             </span>
           </button>
 
