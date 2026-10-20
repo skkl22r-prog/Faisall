@@ -27,7 +27,9 @@ const Envelope = ({ onOpen }: EnvelopeProps) => {
 
   const handleOpen = () => {
     setIsOpen(true);
+    window.dispatchEvent(new Event("envelope-opened"));
     onOpen();
+
     setTimeout(() => {
       setIsHidden(true);
     }, 1000);
@@ -72,7 +74,8 @@ const Envelope = ({ onOpen }: EnvelopeProps) => {
         <div
           className="w-44 h-44 sm:w-52 sm:h-52 rounded-full relative flex items-center justify-center transition-transform duration-300 hover:scale-105 active:scale-95"
           style={{
-            boxShadow: "0px 14px 28px rgba(0, 0, 0, 0.55), 0px 6px 12px rgba(0, 0, 0, 0.35)",
+            boxShadow:
+              "0px 14px 28px rgba(0, 0, 0, 0.55), 0px 6px 12px rgba(0, 0, 0, 0.35)",
           }}
         >
           {/* صورة الختم داخل الحاوية الدائرية */}
